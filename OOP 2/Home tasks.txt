@@ -1,0 +1,77 @@
+#include <iostream>
+
+// Abstract base class= Plant
+class Plant {
+protected:
+    double height; 
+    double growthRate; // The rate of growth (e.g., centimeters per day)
+public:
+    Plant(double initialHeight, double initialGrowthRate) : height(initialHeight), growthRate(initialGrowthRate) {}
+
+    virtual void grow() = 0; //The Pure virtual function
+
+    virtual void displayinfo() const {
+        std::cout << "Plant info: Height = " << height << " units" << ", Growth Rate = " << growthRate << " units per day" << std::endl;
+    }
+
+    virtual ~Plant() {} // Virtual destructor
+};
+
+// Derived class Flower
+class Flower : public Plant {
+public:
+    Flower(double initialHeight) : Plant(initialHeight, 0.52) {}
+
+    void grow() override {
+        height += growthRate;
+    }
+
+    void displayinfo() const override {
+        std::cout << "Flower info:\n Height = " << height << " units" << ", \nGrowth Rate = " << growthRate << " units per day\n\n" << std::endl;
+    }
+};
+
+class Tree : public Plant {
+public:
+    Tree(double initialHeight) : Plant(initialHeight, 0.21) {}
+
+    void grow() override {
+        height += growthRate;
+    }
+
+    void displayinfo() const override {
+        std::cout << "Tree info:\n Height = " << height << " units" << ",\n Growth Rate = " << growthRate << " units per day\n\n" << std::endl;
+    }
+};
+
+class Bush : public Plant {
+public:
+    Bush(double initialHeight) : Plant(initialHeight, 0.13) {}
+
+    void grow() override {
+        height += growthRate;
+    }
+
+    void displayinfo() const override {
+        std::cout << "Bush info:\n Height = " << height << " units" << ",\n Growth Rate = " << growthRate << " units per day\n\n" << std::endl;
+    }
+};
+
+int main() {
+    Flower myFlower(12.0);
+    Tree myTree(222.0);
+    Bush myBush(35.0);
+
+    // TO simulate growth over time for a week
+    for (int day = 1; day <= 7; ++day) {
+        myFlower.grow();
+        myTree.grow();
+        myBush.grow();
+    }
+    //To display plant information after growth
+    myFlower.displayinfo();
+    myTree.displayinfo();
+    myBush.displayinfo();
+
+    return 0;
+}

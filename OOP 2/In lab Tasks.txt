@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+
+//  An abstract class Animal
+class Animal {
+public:
+    virtual void makeSound() const = 0; 
+};
+
+class horse : public Animal {
+public:
+    void makeSound() const override {
+        cout << "Neeigh.Neeigh!\n";
+    }
+};
+
+class Cat : public Animal {
+public:
+    void makeSound() const override {
+        cout << "Meoow Meoow!\n";
+    }
+};
+
+class Monkey : public Animal {
+public:
+    void makeSound() const override {
+        cout << "Ooh ooh, eee eee!\n";
+    }
+};
+
+// Polymorphism in Action
+void hearSound(const Animal& animal) {
+    animal.makeSound();
+}
+
+// Adding a New Animal Class
+class Bird : public Animal {
+public:
+    void makeSound() const override {
+        cout << "Chirp,,Chirp!\n";
+    }
+};
+
+int main() {
+    horse horse;
+    Cat Cat;
+    Monkey monkey;
+    Bird bird;
+
+    hearSound(horse);
+    hearSound(Cat);
+    hearSound(monkey);
+    hearSound(bird);
+
+    return 0;
+}
